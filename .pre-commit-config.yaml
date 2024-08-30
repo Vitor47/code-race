@@ -1,0 +1,13 @@
+repos:
+-   repo: https://github.com/pre-commit/mirrors-black
+    rev: v21.12b0
+    hooks:
+    -   id: black
+-   repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.9.4
+    hooks:
+    -   id: isort
+-   repo: https://github.com/pre-commit/mirrors-autoflake
+    rev: v2.1.1
+    hooks:
+    -   id: autoflake

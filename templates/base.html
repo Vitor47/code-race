@@ -1,0 +1,61 @@
+{% load static %}
+{% load custom_tags %}
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- <link rel="stylesheet" href="{% static 'general/css/base.css' %}"> -->
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logo/icone.jpg' %}" />
+  {% block 'head' %}{% endblock %}
+  <title>{% block 'title' %}{% endblock %} | CODE RACE</title>
+</head>
+
+<body>
+  <!--Header Desktop-->
+  <header class="desktop-header desktop-header-container desktop">
+    <div class="container">
+    </div>
+  </header>
+
+  <!--Header Mobile-->
+  <header class="mobile header">
+  </header>
+
+  {% block 'main' %}
+  {% endblock %}
+
+  <!-- Footer -->
+  <footer class="desktop-footer text-lg-start bg-white text-muted desktop">
+  </footer>
+  <!-- Footer -->
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+    integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  {% block 'body' %}
+  {% endblock %}
+
+  {% for message in messages %}
+  {% if message.tags == 'success' %}
+  <script>
+    swal({
+      title: "SUCESSO!",
+      text: "{{message}}",
+      icon: "success",
+      button: "OK",
+    });
+  </script>
+  {% elif message.tags == 'error' %}
+  <script>
+    swal({
+      title: "ERRO!",
+      text: "{{message}}",
+      icon: "error",
+      button: "OK",
+    });
+  </script>
+  {% endif %}
+  {% endfor %}
+
+</html>
