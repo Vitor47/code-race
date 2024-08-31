@@ -22,7 +22,7 @@
   <header class="mobile header">
   </header>
 
-  {% block 'main' %}
+  {% block content %}
   {% endblock %}
 
   <!-- Footer -->
@@ -33,8 +33,6 @@
     integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="{% static 'js/home.js' %}"></script>
-  {% block content %}
-  {% endblock %}
 
   {% for message in messages %}
   {% if message.tags == 'success' %}
