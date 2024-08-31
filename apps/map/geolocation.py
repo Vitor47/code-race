@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 from gdacs.api import GDACSAPIError, GDACSAPIReader
 from geopy.geocoders import Nominatim
@@ -24,13 +25,30 @@ class GeoLocationMixin:
             coordinates = evento.get("geometry", {}).get("coordinates")
             eventid = evento.get("properties", {}).get("eventid")
             nome_evento = evento.get("properties", {}).get("name")
-
+            descricao = evento.get("properties", {}).get("htmldescription")
+            data_evento = evento.get("properties", {}).get("fromdate")
+            impacto = (
+                evento.get("properties", {})
+                .get("severitydata", {})
+                .get("severitytext")
+            )
+            paises_afetados = evento.get("properties", {}).get(
+                "affectedcountries"
+            )
             envents_format.append(
                 {
-                    "evento_id": eventid,
-                    "evento": nome_evento,
+                    "id": eventid,
+                    "evento": nome_evento or "",
                     "lat": coordinates[1],
                     "lng": coordinates[0],
+                    "descricao": descricao or "",
+                    "impacto": impacto or "",
+                    "data_evento": datetime.strptime(
+                        data_evento, "%Y-%m-%dT%H:%M:%S"
+                    ).strftime("%d/%m/%Y"),
+                    "paises_afetados": [
+                        pais.get("countryname") for pais in paises_afetados
+                    ],
                 }
             )
 
