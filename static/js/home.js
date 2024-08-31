@@ -1,20 +1,11 @@
 let map;
 function initMap() {
-
-  const mockedArray = [
-    { lat: -34.397, lng: 150.644, title: "Location 1", content: "This is the first location." },
-    { lat: -35.307, lng: 149.124, title: "Location 2", content: "This is the second location." },
-    { lat: -33.847, lng: 151.264, title: "Location 3", content: "This is the third location." },
-    { lat: -37.8136, lng: 144.9631, title: "Location 4", content: "This is the fourth location." }
-  ]
-  console.log(mockedArray)
-
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const pos = {
-          lat: mockedArray[0].lat,
-          lng: mockedArray[0].lng,
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
         };
 
         map = new google.maps.Map(document.getElementById("map"), {
@@ -22,22 +13,18 @@ function initMap() {
           center: pos,
         });
 
+        const marker = new google.maps.Marker({
+          position: pos,
+          map: map,
+          title: location.title
+        });
 
-        mockedArray.forEach(location => {
-          const marker = new google.maps.Marker({
-            position: { lat: location.lat, lng: location.lng },
-            map: map,
-            title: location.title
-          });
+        const infoWindow = new google.maps.InfoWindow({
+          content: `<div><h3>Desastres Naturais</h3><p>Cidade atual</p></div>`
+        });
 
-          const infoWindow = new google.maps.InfoWindow({
-            content: `<div><h3>${location.title}</h3><p>${location.content}</p></div>`
-          });
-
-          marker.addListener('click', () => {
-            infoWindow.open(map, marker);
-          });
-
+        marker.addListener('click', () => {
+          infoWindow.open(map, marker);
         });
       },
       () => {
@@ -47,6 +34,56 @@ function initMap() {
   } else {
     handleLocationError(false, map.getCenter());
   }
+}
+
+function markedEventsCity(city, eventos) {
+  const geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({ 'address': city }, async function (results, status) {
+    if (status === 'OK') {
+
+      map.setCenter(results[0].geometry.location);
+      map.setZoom(13);
+
+      const marker = new google.maps.Marker({
+        position: results[0].geometry.location,
+        map: map,
+      });
+
+      const infoWindow = new google.maps.InfoWindow({
+        content: `<div><h3>Desastre natural</h3><p>${city}</p></div>`
+      });
+
+      marker.addListener('click', () => {
+        infoWindow.open(map, marker);
+      });
+
+      if (eventos) {
+        console.log("eventos", eventos)
+        eventos.forEach(location => {
+          const marker = new google.maps.Marker({
+            position: { lat: location.lat, lng: location.lng },
+            map: map,
+            title: location.evento
+          });
+
+          const infoWindow = new google.maps.InfoWindow({
+            content: `<div><h3>Desastre natural</h3><p>${location.evento}</p></div>`
+          });
+
+          marker.addListener('click', () => {
+            infoWindow.open(map, marker);
+          });
+
+        });
+      } else {
+        console.log("deu errado")
+      }
+
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
 }
 
 function searchCity(name_city) {
@@ -77,7 +114,7 @@ function searchCity(name_city) {
             }
           }
           else if (data) {
-            console.log(data)
+            markedEventsCity(name_city, data.context.eventos)
           }
         }
 
@@ -106,24 +143,8 @@ function searchCity(name_city) {
 
 function geocodeCity() {
   const city = document.getElementById("city_input").value;
-  const geocoder = new google.maps.Geocoder();
+  searchCity(city)
 
-  geocoder.geocode({ 'address': city }, function (results, status) {
-    if (status === 'OK') {
-      console.log(results[0].geometry.location)
-      map.setCenter(results[0].geometry.location);
-      map.setZoom(13);
-
-      new google.maps.Marker({
-        position: results[0].geometry.location,
-        map: map,
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-
-  searchCity(city);
 }
 
 function handleLocationError(browserHasGeolocation, pos) {
