@@ -7,18 +7,7 @@ from .geolocation import GeoLocationMixin
 
 
 def home(request):
-    try:
-        geo_location = GeoLocationMixin(10)
-        eventos = geo_location.get_events()
-    except Exception:
-        messages.error(
-            request, "Eventos não encontrados algum erro inesperado!"
-        )
-        return redirect("/")
-
-    return render(
-        request, template_name="map/index.html", context={"eventos": eventos}
-    )
+    return render(request, template_name="map/index.html")
 
 
 @csrf_exempt
