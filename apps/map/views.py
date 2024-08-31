@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.views.decorators.csrf import csrf_exempt
 
 from .geolocation import GeoLocationMixin
 
@@ -20,9 +21,10 @@ def home(request):
     )
 
 
+@csrf_exempt
 def search_events(request):
     if request.method == "POST":
-        name_city = request.get("name_city")
+        name_city = request.POST.get("name_city")
         try:
             geo_location = GeoLocationMixin()
             eventos = geo_location.filter_events(name_city)

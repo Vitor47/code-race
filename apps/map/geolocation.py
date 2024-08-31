@@ -1,3 +1,5 @@
+import json
+
 from gdacs.api import GDACSAPIError, GDACSAPIReader
 
 
@@ -14,7 +16,24 @@ class GeoLocationMixin:
         except GDACSAPIError as error:
             raise ValueError(error)
 
-        return events.model_dump_json()
+        events_json = json.loads(events.model_dump_json())
+
+        envents_format = []
+        for evento in events_json["features"]:
+            coordinates = evento.get("geometry", {}).get("coordinates")
+            eventid = evento.get("properties", {}).get("eventid")
+            nome_evento = evento.get("properties", {}).get("name")
+
+            envents_format.append(
+                {
+                    "evento_id": eventid,
+                    "evento": nome_evento,
+                    "lat": coordinates[0],
+                    "lng": coordinates[1],
+                }
+            )
+
+        return envents_format
 
     def filter_events(self, name_city):
         return self.get_events()
