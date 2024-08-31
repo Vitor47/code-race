@@ -90,6 +90,7 @@ function searchCity(name_city) {
   if (name_city != "" && name_city.length >= 5) {
     $('#img-reload').css('display', 'block');
     $("#img-reload").html('<img style="max-width: 24%;" src="/static/images/reload-gif.gif" alt="gif">');
+    $('#map').css('webkit-filter', 'blur(8px)');
 
     $.ajax({
       url: "/search-events/",
@@ -119,6 +120,7 @@ function searchCity(name_city) {
         }
 
         $('#img-reload').css('display', 'none');
+        $('#map').css('webkit-filter', 'blur(0px)');
       },
       error: function (data) {
         swal({
@@ -128,6 +130,7 @@ function searchCity(name_city) {
           button: "OK",
         });
         $('#img-reload').css('display', 'none');
+        $('#map').css('webkit-filter', 'blur(0px)');
       }
     });
   }

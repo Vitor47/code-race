@@ -1,32 +1,65 @@
-.container_input{
-    margin-top: 20px;
-    position: absolute;
-    z-index: 99999;
-    left: 33%;
-    padding: 10px 15px
+body{
+    margin: 0;
+    height: 100vh;
+}
+
+.container{
+    background: linear-gradient(135deg, #43A047,#0288D1);
+}
+
+img.logo {
+    width: 60px;
+    height: 60px;
+}
+
+.desktop-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.container_input {
+    position: relative;
+    width: 50%; /* or a specific width like 300px */
+    border-radius: 12px;
 }
 
 .input_mapa {
-    position: relative;
-    width: 500px;
-    height: 30px;
-    border-radius: 8px;
+    width: 100%;
+    padding-inline: 40px; /* Space for the icon */
+    box-sizing: border-box;
+    height: 35px;
+    border-radius: 12px;
     border: none;
+    &:active {
+    border: none;
+        
+    }
 }
 
-.fa-brands{
+.container_input svg {
     position: absolute;
-    font-size: 22px;
-    left: 480px;
-    top: 8px;
+    right: 10px; /* Adjust this value to fine-tune the position */
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
 }
 
+
+section {
+    margin: 0 10px;
+}
+
 #map {
-    position: relative;
-    height: 100vh;  
-    width: 100%;
+    border-radius: 10px;
+    height: 500px;
     overflow: hidden;
+}
+
+#img-reload {
+    position: absolute;
+    left: 50%;
+    top: 50%;
 }
 
 .gm-style-iw.gm-style-iw-c{
