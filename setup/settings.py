@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_bootstrap_icons",
+    'fontawesomefree',
     "widget_tweaks",
     "apps.map",
 ]
