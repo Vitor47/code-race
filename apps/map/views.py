@@ -16,7 +16,7 @@ def search_events(request):
         name_city = request.POST.get("name_city")
         try:
             geo_location = GeoLocationMixin()
-            eventos = geo_location.filter_events(name_city)
+            eventos = geo_location.get_events()
         except:
             messages.error(
                 request, "Eventos não encontrados algum erro inesperado!"
