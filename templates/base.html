@@ -1,12 +1,11 @@
 {% load static %}
-{% load custom_tags %}
 <!doctype html>
 <html lang="pt-BR">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- <link rel="stylesheet" href="{% static 'general/css/base.css' %}"> -->
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
   <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logo/icone.jpg' %}" />
   {% block 'head' %}{% endblock %}
   <title>{% block 'title' %}{% endblock %} | CODE RACE</title>
@@ -33,7 +32,8 @@
   <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
     integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  {% block 'body' %}
+  <script src="{% static 'js/home.js' %}"></script>
+  {% block content %}
   {% endblock %}
 
   {% for message in messages %}

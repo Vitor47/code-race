@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_bootstrap_icons",
     "widget_tweaks",
+    "apps.map",
 ]
 
 MIDDLEWARE = [
