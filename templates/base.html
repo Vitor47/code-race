@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
   <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/logo/icone.jpg' %}" />
-  {% block 'head' %}{% endblock %}
-  <title>{% block 'title' %}{% endblock %} | CODE RACE</title>
+  {% block head %}{% endblock %}
+  <title>{% block title %}{% endblock %} | CODE RACE</title>
 </head>
 
 <body>
@@ -33,6 +33,9 @@
     integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="{% static 'js/home.js' %}"></script>
+
+  {% block body %}
+  {% endblock %}
 
   {% for message in messages %}
   {% if message.tags == 'success' %}
