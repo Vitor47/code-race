@@ -47,18 +47,18 @@ class GeoLocationMixin:
             return None, None
 
     def filter_events(self, name_city):
-        lat, lng = self.obter_coordenadas(name_city)
+        # lat, lng = self.obter_coordenadas(name_city)
 
-        if not lat and not lng:
-            raise ValueError(
-                f"Não foi possível encontrar a localização para {name_city}."
-            )
+        # if not lat and not lng:
+        #     raise ValueError(
+        #         f"Não foi possível encontrar a localização para {name_city}."
+        #     )
 
-        events = self.get_events()
+        return self.get_events()
 
-        return list(
-            filter(lambda event: event["lat"] == lat and event["lon"], events)
-        )
+        # return list(
+        #     filter(lambda event: event["lat"] == lat and event["lon"], events)
+        # )
 
     def get_event(self, event_type, event_id):
         try:
