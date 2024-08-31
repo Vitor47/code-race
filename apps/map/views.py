@@ -1,14 +1,15 @@
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
-from geolocation import GeoLocationMixin
+
+from .geolocation import GeoLocationMixin
 
 
 def home(request):
     try:
-        geo_location = GeoLocationMixin(100)
+        geo_location = GeoLocationMixin(10)
         eventos = geo_location.get_events()
-    except:
+    except Exception:
         messages.error(
             request, "Eventos não encontrados algum erro inesperado!"
         )
