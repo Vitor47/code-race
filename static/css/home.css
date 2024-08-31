@@ -9,6 +9,8 @@
     position: relative;
     width: 500px;
     height: 30px;
+    border-radius: 8px;
+    border: none;
 }
 
 .fa-brands{
