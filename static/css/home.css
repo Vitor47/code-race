@@ -1,5 +1,8 @@
-.container_mapa{
+.container_input{
     margin-top: 10px;
+    position: absolute;
+    z-index: 99999;
+    left: 33%;
 }
 
 .input_mapa {
@@ -12,9 +15,12 @@
     position: absolute;
     font-size: 22px;
     left: 480px;
-    top: 18px;
+    top: 8px;
+}
 
 #map {
-    height: 400px;  /* The height is 400 pixels */
-    width: 100%;  /* The width is the width of the web page */
+    position: relative;
+    height: 100vh;  /* The height is 400 pixels */
+    width: 100%;
+    overflow: hidden;  /* The width is the width of the web page */
 }
