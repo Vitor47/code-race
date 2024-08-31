@@ -1,4 +1,17 @@
+.container_mapa{
+    margin-top: 10px;
+}
+
 .input_mapa {
+    position: relative;
     width: 500px;
     height: 30px;
+}
+
+.fa-brands{
+    position: absolute;
+    font-size: 22px;
+    left: 480px;
+    top: 18px;
+
 }
