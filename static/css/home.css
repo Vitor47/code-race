@@ -18,6 +18,7 @@
     font-size: 22px;
     left: 480px;
     top: 8px;
+    cursor: pointer;
 }
 
 #map {

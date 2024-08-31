@@ -9,7 +9,7 @@ function initMap() {
         };
 
         map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 8,
+          zoom: 13,
           center: pos,
         });
 
@@ -89,7 +89,7 @@ function geocodeCity() {
   geocoder.geocode({ 'address': city }, function (results, status) {
     if (status === 'OK') {
       map.setCenter(results[0].geometry.location);
-      map.setZoom(12);
+      map.setZoom(13);
 
       new google.maps.Marker({
         position: results[0].geometry.location,
