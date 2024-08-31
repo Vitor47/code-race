@@ -20,7 +20,7 @@ function initMap() {
         });
 
         const infoWindow = new google.maps.InfoWindow({
-          content: `<div><h3>Desastres Naturais</h3><p>Cidade atual</p></div>`
+          content: `<div><h3>Cidade atual</h3></div>`
         });
 
         marker.addListener('click', () => {
@@ -51,7 +51,7 @@ function markedEventsCity(city, eventos) {
       });
 
       const infoWindow = new google.maps.InfoWindow({
-        content: `<div><h3>Desastre natural</h3><p>${city}</p></div>`
+        content: `<div><h3>Cidade</h3><p>${city}</p></div>`
       });
 
       marker.addListener('click', () => {
@@ -59,7 +59,6 @@ function markedEventsCity(city, eventos) {
       });
 
       if (eventos) {
-        console.log("eventos", eventos)
         eventos.forEach(location => {
           const marker = new google.maps.Marker({
             position: { lat: location.lat, lng: location.lng },
@@ -68,7 +67,7 @@ function markedEventsCity(city, eventos) {
           });
 
           const infoWindow = new google.maps.InfoWindow({
-            content: `<div><h3>Desastre natural</h3><p>${location.evento}</p></div>`
+            content: `<div><h3>Desastre natural</h3><p>${location.evento}</p><p>${location.descricao}</p><p>${location.impacto}</p><p>${location.data_evento}</p></div>`
           });
 
           marker.addListener('click', () => {
@@ -77,11 +76,21 @@ function markedEventsCity(city, eventos) {
 
         });
       } else {
-        console.log("deu errado")
+        swal({
+          title: "Opps!",
+          text: 'Nenhum evento encontrado',
+          icon: "error",
+          button: "OK",
+        });
       }
 
     } else {
-      alert('Geocode was not successful for the following reason: ' + status);
+      swal({
+        title: "Opps!",
+        text: 'Geocode was not successful for the following reason: ' + status,
+        icon: "error",
+        button: "OK",
+      });
     }
   });
 }
@@ -143,6 +152,13 @@ function searchCity(name_city) {
     });
   }
 }
+
+function handleKeyPress(event) {
+  if (event.which === 13) {
+    geocodeCity();
+  }
+}
+
 
 function geocodeCity() {
   const city = document.getElementById("city_input").value;
