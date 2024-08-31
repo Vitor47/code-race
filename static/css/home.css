@@ -27,3 +27,14 @@
     width: 100%;
     overflow: hidden;
 }
+
+.gm-style-iw.gm-style-iw-c{
+    width: 350px;
+
+    .gm-style-iw-ch{
+        display: none;
+    }
+    .gm-style-iw-chr{
+        justify-content: "flex-end"
+    }
+}
