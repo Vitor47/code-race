@@ -1,8 +1,9 @@
 .container_input{
-    margin-top: 10px;
+    margin-top: 20px;
     position: absolute;
     z-index: 99999;
     left: 33%;
+    padding: 10px 15px
 }
 
 .input_mapa {

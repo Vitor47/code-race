@@ -29,8 +29,8 @@ class GeoLocationMixin:
                 {
                     "evento_id": eventid,
                     "evento": nome_evento,
-                    "lat": coordinates[0],
-                    "lng": coordinates[1],
+                    "lat": coordinates[1],
+                    "lng": coordinates[0],
                 }
             )
 
