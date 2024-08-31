@@ -14,3 +14,5 @@ slug==2.0
 sqlparse==0.5.1
 typing_extensions==4.12.2
 urllib3==2.2.2
+gdacs-api==2.0.0
+fontawesomefree==6.6.0
